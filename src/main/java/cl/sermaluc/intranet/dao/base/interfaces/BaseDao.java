@@ -190,4 +190,12 @@ public interface BaseDao<T extends BaseEntity, ID extends String> {
      * @throws Exception possibility exception
      */
     public Flux<T> findAll(T filter, Sort sort) throws Exception;
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public Mono<Boolean> existsById(ID id) throws Exception;
 }

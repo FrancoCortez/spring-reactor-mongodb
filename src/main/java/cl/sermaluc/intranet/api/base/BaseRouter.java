@@ -1,4 +1,4 @@
-package cl.sermaluc.intranet.validation.base;
+package cl.sermaluc.intranet.api.base;
 
 import org.springframework.beans.factory.annotation.Value;
 

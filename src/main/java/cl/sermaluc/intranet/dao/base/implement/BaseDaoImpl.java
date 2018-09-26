@@ -257,4 +257,14 @@ public class BaseDaoImpl<T extends BaseEntity, ID extends String> implements Bas
     public Flux<T> findAll(T filter, Sort sort) throws Exception {
         return this.tidReactiveMongoRepository.findAll(Example.of(filter), sort);
     }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public Mono<Boolean> existsById(ID id) throws Exception{
+        return this.tidReactiveMongoRepository.existsById(id);
+    }
 }

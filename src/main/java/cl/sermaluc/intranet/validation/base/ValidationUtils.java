@@ -8,6 +8,7 @@ public class ValidationUtils {
     public static final BaseValidation<String> notEmptyString = GenericValidation.from(s -> !s.isEmpty());
     public static final BaseValidation<Integer> notNullInteger = GenericValidation.from(Objects::nonNull);
     public static final BaseValidation<Integer> greaterThanZero = GenericValidation.from(s -> s > 0);
+    public static final BaseValidation<Object> objectNotNull = GenericValidation.from(Objects::nonNull);
 
     public static BaseValidation<String> stringMoreThan(int size) {
         return GenericValidation.from(s -> ((String) s).length() > size);

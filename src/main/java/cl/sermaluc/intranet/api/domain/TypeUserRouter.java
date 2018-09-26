@@ -2,8 +2,7 @@ package cl.sermaluc.intranet.api.domain;
 
 
 import cl.sermaluc.intranet.service.domain.interfaces.TypeUserService;
-import cl.sermaluc.intranet.validation.base.BaseRouter;
-import org.springframework.beans.factory.annotation.Value;
+import cl.sermaluc.intranet.api.base.BaseRouter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
