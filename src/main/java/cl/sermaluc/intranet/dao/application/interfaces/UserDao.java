@@ -10,20 +10,18 @@ import reactor.core.publisher.Mono;
 public interface UserDao extends BaseDao<UserEntity, String> {
 
     /**
-     *
      * @param name
      * @return
      */
     Mono<UserEntity> findByUsername(String name);
+
     /**
-     *
      * @param email
      * @return
      */
     Mono<UserEntity> findByEmail(String email);
 
     /**
-     *
      * @param usernameOrEmail
      * @param password
      * @return
@@ -31,7 +29,6 @@ public interface UserDao extends BaseDao<UserEntity, String> {
     Mono<UserEntity> findByUserNameOrEmailAndPassword(String usernameOrEmail, String password);
 
     /**
-     *
      * @param name
      * @param password
      * @return
@@ -39,7 +36,6 @@ public interface UserDao extends BaseDao<UserEntity, String> {
     Mono<UserEntity> findByUsernameAndPassword(String name, String password);
 
     /**
-     *
      * @param usernameOrEmail
      * @return
      */

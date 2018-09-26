@@ -192,7 +192,6 @@ public interface BaseDao<T extends BaseEntity, ID extends String> {
     public Flux<T> findAll(T filter, Sort sort) throws Exception;
 
     /**
-     *
      * @param id
      * @return
      * @throws Exception

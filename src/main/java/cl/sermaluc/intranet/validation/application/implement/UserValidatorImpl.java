@@ -12,11 +12,10 @@ import org.springframework.stereotype.Component;
 public class UserValidatorImpl implements UserValidator {
 
     /**
-     *
      * @param to
      * @throws Exception
      */
-    public void validatorRequestObject(UserRequest to) throws Exception{
+    public void validatorRequestObject(UserRequest to) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
                 ValidationUtils.objectNotNull

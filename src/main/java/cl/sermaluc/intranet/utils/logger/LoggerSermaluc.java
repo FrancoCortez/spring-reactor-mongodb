@@ -8,11 +8,11 @@ import org.slf4j.LoggerFactory;
  */
 public class LoggerSermaluc {
 
-    private Logger logger;
     private final String BEGIN = "BEGIN";
     private final String EXECUTE = "EXECUTE";
     private final String ERROR = "ERROR";
     private final String END = "END";
+    private Logger logger;
 
     /**
      * Init logger with class param
@@ -23,34 +23,40 @@ public class LoggerSermaluc {
         this.logger = LoggerFactory.getLogger(clazz);
     }
 
-    public void infoBegin(String method, String msg){
+    public void infoBegin(String method, String msg) {
         customLogger(BEGIN, method, msg);
     }
-    public void infoBegin(String method){
+
+    public void infoBegin(String method) {
         customLogger(BEGIN, method);
     }
-    public void infoExecute(String method, String msg){
+
+    public void infoExecute(String method, String msg) {
         customLogger(EXECUTE, method, msg);
     }
-    public void infoExecute(String method){
+
+    public void infoExecute(String method) {
         this.customLogger(EXECUTE, method);
     }
-    public void infoEnd(String method, String msg){
+
+    public void infoEnd(String method, String msg) {
         this.customLogger(END, method, msg);
     }
-    public void infoEnd(String method){
+
+    public void infoEnd(String method) {
         this.customLogger(END, method);
     }
 
-    public void infoError(String method, String msg){
+    public void infoError(String method, String msg) {
         this.customLogger(ERROR, method, msg);
     }
 
 
-    private void customLogger(String init, String method, String msg){
-        logger.info("["+init+"]         [" + method +"] = " + msg);
+    private void customLogger(String init, String method, String msg) {
+        logger.info("[" + init + "]         [" + method + "] = " + msg);
     }
-    private void customLogger(String init, String method){
-        logger.info("["+init+"]         [" + method +"]");
+
+    private void customLogger(String init, String method) {
+        logger.info("[" + init + "]         [" + method + "]");
     }
 }

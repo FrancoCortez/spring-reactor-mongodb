@@ -26,6 +26,7 @@ public class BaseDaoImpl<T extends BaseEntity, ID extends String> implements Bas
      * Inject the logger in the dao
      */
     private LoggerSermaluc logger = new LoggerSermaluc(getClass());
+
     /**
      * Constructor for injections dependencies
      *
@@ -259,12 +260,11 @@ public class BaseDaoImpl<T extends BaseEntity, ID extends String> implements Bas
     }
 
     /**
-     *
      * @param id
      * @return
      * @throws Exception
      */
-    public Mono<Boolean> existsById(ID id) throws Exception{
+    public Mono<Boolean> existsById(ID id) throws Exception {
         return this.tidReactiveMongoRepository.existsById(id);
     }
 }

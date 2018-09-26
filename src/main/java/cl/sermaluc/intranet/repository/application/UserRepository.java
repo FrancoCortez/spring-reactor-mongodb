@@ -12,20 +12,18 @@ import reactor.core.publisher.Mono;
 public interface UserRepository extends ReactiveMongoRepository<UserEntity, String> {
 
     /**
-     *
      * @param username
      * @return
      */
     Mono<UserEntity> findByUsername(String username);
 
     /**
-     *
      * @param email
      * @return
      */
     Mono<UserEntity> findByEmail(String email);
+
     /**
-     *
      * @param username
      * @param password
      * @return
@@ -33,7 +31,6 @@ public interface UserRepository extends ReactiveMongoRepository<UserEntity, Stri
     Mono<UserEntity> findByUsernameAndPassword(String username, String password);
 
     /**
-     *
      * @param username
      * @param email
      * @return
@@ -41,7 +38,6 @@ public interface UserRepository extends ReactiveMongoRepository<UserEntity, Stri
     Mono<UserEntity> findByUsernameOrEmail(String username, String email);
 
     /**
-     *
      * @param username
      * @param email
      * @param password

@@ -4,7 +4,6 @@ import cl.sermaluc.intranet.model.entity.base.BaseEntity;
 import cl.sermaluc.intranet.model.entity.domain.TypeUserEntity;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;

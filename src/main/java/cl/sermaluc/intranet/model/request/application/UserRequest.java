@@ -1,6 +1,5 @@
 package cl.sermaluc.intranet.model.request.application;
 
-import cl.sermaluc.intranet.model.request.domain.TypeUserRequest;
 import cl.sermaluc.intranet.model.request.domain.TypeUserWithIdRequest;
 import lombok.*;
 

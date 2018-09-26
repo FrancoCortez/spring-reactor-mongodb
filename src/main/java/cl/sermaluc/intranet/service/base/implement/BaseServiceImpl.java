@@ -37,24 +37,24 @@ public class BaseServiceImpl<T extends BaseEntity, ID extends String> implements
         return ServerResponse.badRequest().body(Mono.just(response), ErrorHandlerResponse.class);
     }
 
-    protected Mono<ServerResponse> errorHandler(String msg){
+    protected Mono<ServerResponse> errorHandler(String msg) {
         ErrorHandlerResponse response = ErrorHandlerResponse.builder()
                 .msg(msg)
                 .build();
-        return ServerResponse.badRequest().body(Mono.just(response),ErrorHandlerResponse.class);
+        return ServerResponse.badRequest().body(Mono.just(response), ErrorHandlerResponse.class);
     }
 
-    protected Mono<ServerResponse> warnnigHandler(String msg){
+    protected Mono<ServerResponse> warnnigHandler(String msg) {
         ErrorHandlerResponse response = ErrorHandlerResponse.builder()
                 .msg(msg)
                 .build();
-        return ServerResponse.status(409).body(Mono.just(response),ErrorHandlerResponse.class);
+        return ServerResponse.status(409).body(Mono.just(response), ErrorHandlerResponse.class);
     }
 
-    protected Mono<ServerResponse> notFoundHandler(String msg){
+    protected Mono<ServerResponse> notFoundHandler(String msg) {
         ErrorHandlerResponse response = ErrorHandlerResponse.builder()
                 .msg(msg)
                 .build();
-        return ServerResponse.status(404).body(Mono.just(response),ErrorHandlerResponse.class);
+        return ServerResponse.status(404).body(Mono.just(response), ErrorHandlerResponse.class);
     }
 }

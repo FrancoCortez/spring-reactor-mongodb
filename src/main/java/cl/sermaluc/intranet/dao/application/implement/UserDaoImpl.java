@@ -19,7 +19,6 @@ public class UserDaoImpl extends BaseDaoImpl<UserEntity, String> implements User
     private final UserRepository userRepository;
 
     /**
-     *
      * @param userRepository
      */
     public UserDaoImpl(final UserRepository userRepository) {
@@ -28,50 +27,45 @@ public class UserDaoImpl extends BaseDaoImpl<UserEntity, String> implements User
     }
 
     /**
-     *
      * @param name
      * @return
      */
-    public Mono<UserEntity> findByUsername(String name){
+    public Mono<UserEntity> findByUsername(String name) {
         return this.userRepository.findByUsername(name);
     }
 
     /**
-     *
      * @param email
      * @return
      */
-    public Mono<UserEntity> findByEmail(String email){
+    public Mono<UserEntity> findByEmail(String email) {
         return this.userRepository.findByEmail(email);
     }
 
     /**
-     *
      * @param usernameOrEmail
      * @param password
      * @return
      */
-    public Mono<UserEntity> findByUserNameOrEmailAndPassword(String usernameOrEmail, String password){
-        return this.userRepository.findByUsernameOrEmailAndPassword(usernameOrEmail,usernameOrEmail,password);
+    public Mono<UserEntity> findByUserNameOrEmailAndPassword(String usernameOrEmail, String password) {
+        return this.userRepository.findByUsernameOrEmailAndPassword(usernameOrEmail, usernameOrEmail, password);
     }
 
     /**
-     *
      * @param name
      * @param password
      * @return
      */
-    public Mono<UserEntity> findByUsernameAndPassword(String name, String password){
+    public Mono<UserEntity> findByUsernameAndPassword(String name, String password) {
         return this.userRepository.findByUsernameAndPassword(name, password);
     }
 
     /**
-     *
      * @param usernameOrEmail
      * @return
      */
-    public Mono<UserEntity> findByUsernameOrEmail(String usernameOrEmail){
-        return this.userRepository.findByUsernameOrEmail(usernameOrEmail,usernameOrEmail);
+    public Mono<UserEntity> findByUsernameOrEmail(String usernameOrEmail) {
+        return this.userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
     }
 
 }

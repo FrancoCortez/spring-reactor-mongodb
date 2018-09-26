@@ -17,7 +17,6 @@ public interface TypeUserValidator {
     public void validatorRequestObject(TypeUserRequest to) throws Exception;
 
     /**
-     *
      * @param to
      * @throws Exception
      */
@@ -32,7 +31,6 @@ public interface TypeUserValidator {
     public void validatorIdRequestParam(String id) throws Exception;
 
     /**
-     *
      * @param id
      * @throws Exception
      */

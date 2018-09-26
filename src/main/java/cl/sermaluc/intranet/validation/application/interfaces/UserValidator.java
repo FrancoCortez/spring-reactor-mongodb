@@ -5,7 +5,6 @@ import cl.sermaluc.intranet.model.request.application.UserRequest;
 public interface UserValidator {
 
     /**
-     *
      * @param to
      * @throws Exception
      */

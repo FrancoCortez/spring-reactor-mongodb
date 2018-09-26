@@ -3,14 +3,11 @@ package cl.sermaluc.intranet.validation.domain.implement;
 import cl.sermaluc.intranet.dao.domain.interfaces.TypeUserDao;
 import cl.sermaluc.intranet.model.request.domain.TypeUserRequest;
 import cl.sermaluc.intranet.model.request.domain.TypeUserWithIdRequest;
-import cl.sermaluc.intranet.validation.base.BaseValidation;
-import cl.sermaluc.intranet.validation.base.GenericValidation;
 import cl.sermaluc.intranet.validation.base.ValidationUtils;
 import cl.sermaluc.intranet.validation.domain.interfaces.TypeUserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,10 +18,9 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
     /**
      *
      */
-    private final TypeUserDao typeUserDao ;
+    private final TypeUserDao typeUserDao;
 
     /**
-     *
      * @param typeUserDao
      */
     @Autowired
@@ -53,7 +49,6 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
     }
 
     /**
-     *
      * @param to
      * @throws Exception
      */
@@ -100,7 +95,6 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
     }
 
     /**
-     *
      * @param id
      * @throws Exception
      */
@@ -108,14 +102,14 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
         StringBuilder errors = new StringBuilder();
         try {
             Optional<Boolean> isExists = this.typeUserDao.existsById(id).toProcessor().blockOptional();
-            if(!isExists.isPresent())
+            if (!isExists.isPresent())
                 errors.append("El objeto tipo de usuario no existe en la base de datos.");
-            else{
-                if(!isExists.get()){
+            else {
+                if (!isExists.get()) {
                     errors.append("El objeto tipo de usuario no existe en la base de datos.");
                 }
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             errors.append("A ocurrido un error al buscar el id.");
         }
         if (!errors.toString().isEmpty()) {

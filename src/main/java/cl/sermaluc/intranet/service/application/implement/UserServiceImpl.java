@@ -26,11 +26,11 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity, String> impleme
     private final UserValidator userValidator;
 
     /**
-     *  @param userDao
+     * @param userDao
      * @param typeUserValidator
      * @param userValidator
      */
-    public UserServiceImpl(final UserDao userDao, final TypeUserValidator typeUserValidator,final UserValidator userValidator) {
+    public UserServiceImpl(final UserDao userDao, final TypeUserValidator typeUserValidator, final UserValidator userValidator) {
         super(userDao);
         this.userDao = userDao;
         this.typeUserValidator = typeUserValidator;

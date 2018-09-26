@@ -1,8 +1,8 @@
 package cl.sermaluc.intranet.api.domain;
 
 
-import cl.sermaluc.intranet.service.domain.interfaces.TypeUserService;
 import cl.sermaluc.intranet.api.base.BaseRouter;
+import cl.sermaluc.intranet.service.domain.interfaces.TypeUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -26,12 +26,12 @@ public class TypeUserRouter extends BaseRouter {
     @Bean(value = "type-user")
     public RouterFunction<ServerResponse> router(TypeUserService typeUserService) {
         return route(POST(baseRest + "/type-user").and(accept(APPLICATION_JSON)).and(contentType(APPLICATION_JSON)), typeUserService::insert)
-                .andRoute(GET(baseRest +"/type-user"), typeUserService::findAll)
-                .andRoute(GET(baseRest +"/type-user/{id}"), typeUserService::findById)
-                .andRoute(GET(baseRest+"/type-user/find-by-name/{name}"), typeUserService::findByName)
-                .andRoute(PUT(baseRest+"/type-user/{id}").and(accept(APPLICATION_JSON)).and(contentType(APPLICATION_JSON)) , typeUserService::update)
-                .andRoute(DELETE(baseRest+"/type-user/{id}").and(accept(APPLICATION_JSON)), typeUserService::delete)
-                .andRoute(POST(baseRest+"/type-user/delete-all"),typeUserService::deleteAll)
+                .andRoute(GET(baseRest + "/type-user"), typeUserService::findAll)
+                .andRoute(GET(baseRest + "/type-user/{id}"), typeUserService::findById)
+                .andRoute(GET(baseRest + "/type-user/find-by-name/{name}"), typeUserService::findByName)
+                .andRoute(PUT(baseRest + "/type-user/{id}").and(accept(APPLICATION_JSON)).and(contentType(APPLICATION_JSON)), typeUserService::update)
+                .andRoute(DELETE(baseRest + "/type-user/{id}").and(accept(APPLICATION_JSON)), typeUserService::delete)
+                .andRoute(POST(baseRest + "/type-user/delete-all"), typeUserService::deleteAll)
                 ;
     }
 }

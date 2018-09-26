@@ -68,15 +68,15 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
      * @param request request the server petition
      * @return response the server to client
      */
-    public Mono<ServerResponse> update(ServerRequest request){
+    public Mono<ServerResponse> update(ServerRequest request) {
         try {
             String id = request.pathVariable("id");
             this.typeUserValidator.validatorIdRequestParam(id);
             Mono<TypeUserEntity> validationId = this.typeUserDao.findById(id);
-            if(validationId == null){
+            if (validationId == null) {
                 return this.notFoundHandler("Id del objeto a modificar no existe.");
             }
-            if(validationId.toProcessor().block() == null){
+            if (validationId.toProcessor().block() == null) {
                 return this.notFoundHandler("Id del objeto a modificar no existe.");
             }
             Thread.sleep(10000);
@@ -91,10 +91,11 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
             entity.set_id(id);
             Mono<TypeUserEntity> monoResponse = this.typeUserDao.update(entity);
             return ServerResponse.ok().body(monoResponse, TypeUserEntity.class);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return this.errorHandler(ex);
         }
     }
+
     /**
      * Delete logic for type user collections.
      * Delete the one document in the collections type user.
@@ -102,18 +103,18 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
      * @param request request the server petition
      * @return response the server to client
      */
-    public Mono<ServerResponse> delete(ServerRequest request){
+    public Mono<ServerResponse> delete(ServerRequest request) {
         try {
             String id = request.pathVariable("id");
             this.typeUserValidator.validatorIdRequestParam(id);
             Mono<TypeUserEntity> searchForDelete = this.typeUserDao.findById(id);
             TypeUserEntity searchForDeleteTO = searchForDelete.toProcessor().block();
-            if(searchForDeleteTO == null){
+            if (searchForDeleteTO == null) {
                 return this.notFoundHandler("Objecto para la eliminacion no existe");
             }
             Mono<Void> response = this.typeUserDao.deleteById(id);
             return ServerResponse.ok().body(response, Void.class);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return this.errorHandler(ex);
         }
     }
@@ -124,11 +125,11 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
      * @param request request the server petition
      * @return response the server to client
      */
-    public Mono<ServerResponse> deleteAll(ServerRequest request){
+    public Mono<ServerResponse> deleteAll(ServerRequest request) {
         try {
             Mono<Void> response = this.typeUserDao.deleteAll();
             return ServerResponse.ok().body(response, Void.class);
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return this.errorHandler(ex);
         }
     }
