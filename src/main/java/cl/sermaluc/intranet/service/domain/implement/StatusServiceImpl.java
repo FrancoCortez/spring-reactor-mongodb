@@ -1,11 +1,11 @@
 package cl.sermaluc.intranet.service.domain.implement;
 
-import cl.sermaluc.intranet.dao.domain.interfaces.TypeUserDao;
-import cl.sermaluc.intranet.model.entity.domain.TypeUserEntity;
-import cl.sermaluc.intranet.model.request.domain.TypeUserRequest;
+import cl.sermaluc.intranet.dao.domain.interfaces.StatusDao;
+import cl.sermaluc.intranet.model.entity.domain.StatusEntity;
+import cl.sermaluc.intranet.model.request.domain.StatusRequest;
 import cl.sermaluc.intranet.service.base.implement.BaseServiceImpl;
-import cl.sermaluc.intranet.service.domain.interfaces.TypeUserService;
-import cl.sermaluc.intranet.validation.domain.interfaces.TypeUserValidator;
+import cl.sermaluc.intranet.service.domain.interfaces.StatusService;
+import cl.sermaluc.intranet.validation.domain.interfaces.StatusValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -15,46 +15,45 @@ import reactor.core.publisher.Mono;
  * Type user service implementation for business logic
  */
 @Service
-public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String> implements TypeUserService {
+public class StatusServiceImpl extends BaseServiceImpl<StatusEntity, String> implements StatusService {
     /**
-     * Injection for dao type user.
+     * Injection for dao status.
      */
-    private final TypeUserDao typeUserDao;
+    private final StatusDao statusDao;
     /**
-     * Injection for validator type user.
+     * Injection for validator status.
      */
-    private final TypeUserValidator typeUserValidator;
+    private final StatusValidator statusValidator;
 
     /**
      * Constructor for injection the dependencies
      *
-     * @param typeUserDao       dao type user dependency
-     * @param typeUserValidator validator for type user dependency
+     * @param statusDao       dao status dependency
+     * @param statusValidator validator for status dependency
      */
-    public TypeUserServiceImpl(final TypeUserDao typeUserDao, final TypeUserValidator typeUserValidator) {
-        super(typeUserDao);
-        this.typeUserDao = typeUserDao;
-        this.typeUserValidator = typeUserValidator;
+    public StatusServiceImpl(final StatusDao statusDao, final StatusValidator statusValidator) {
+        super(statusDao);
+        this.statusDao = statusDao;
+        this.statusValidator = statusValidator;
     }
 
     /**
-     * Insert logic for type user collections.
-     * Insert the one document in the collections type user.
+     * Insert logic for status collections.
+     * Insert the one document in the collections status.
      *
      * @param request request the server petition
      * @return response the server to client
      */
     public Mono<ServerResponse> insert(ServerRequest request) {
         try {
-            Mono<TypeUserRequest> monoRequestTO = request.bodyToMono(TypeUserRequest.class);
-            TypeUserRequest requestTO = monoRequestTO.toProcessor().block();
-            this.typeUserValidator.validatorRequestObject(requestTO);
-            TypeUserEntity entity = TypeUserEntity.builder()
+            StatusRequest requestTO = request.bodyToMono(StatusRequest.class).toProcessor().block();
+            this.statusValidator.validatorRequestObject(requestTO);
+            StatusEntity entity = StatusEntity.builder()
                     .name(requestTO.getName())
                     .description(requestTO.getDescription())
                     .build();
-            Mono<TypeUserEntity> monoResponse = this.typeUserDao.insert(entity);
-            return ServerResponse.ok().body(monoResponse, TypeUserEntity.class);
+            Mono<StatusEntity> monoResponse = this.statusDao.insert(entity);
+            return ServerResponse.ok().body(monoResponse, StatusEntity.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
         }
@@ -62,8 +61,8 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
 
 
     /**
-     * Update logic for type user collections.
-     * Update the one document in the collections type user.
+     * Update logic for status collections.
+     * Update the one document in the collections status.
      *
      * @param request request the server petition
      * @return response the server to client
@@ -71,25 +70,25 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
     public Mono<ServerResponse> update(ServerRequest request) {
         try {
             String id = request.pathVariable("id");
-            this.typeUserValidator.validatorIdRequestParam(id);
-            Mono<TypeUserEntity> validationId = this.typeUserDao.findById(id);
+            this.statusValidator.validatorIdRequestParam(id);
+            Mono<StatusEntity> validationId = this.statusDao.findById(id);
             if (validationId == null) {
                 return this.notFoundHandler("Id del objeto a modificar no existe.");
             }
             if (validationId.toProcessor().block() == null) {
                 return this.notFoundHandler("Id del objeto a modificar no existe.");
             }
-            Mono<TypeUserRequest> monoRequestTO = request.bodyToMono(TypeUserRequest.class);
-            TypeUserRequest requestTO = monoRequestTO.toProcessor().block();
-            this.typeUserValidator.validatorRequestObject(requestTO);
+            Mono<StatusRequest> monoRequestTO = request.bodyToMono(StatusRequest.class);
+            StatusRequest requestTO = monoRequestTO.toProcessor().block();
+            this.statusValidator.validatorRequestObject(requestTO);
 
-            TypeUserEntity entity = TypeUserEntity.builder()
+            StatusEntity entity = StatusEntity.builder()
                     .name(requestTO.getName())
                     .description(requestTO.getDescription())
                     .build();
             entity.set_id(id);
-            Mono<TypeUserEntity> monoResponse = this.typeUserDao.update(entity);
-            return ServerResponse.ok().body(monoResponse, TypeUserEntity.class);
+            Mono<StatusEntity> monoResponse = this.statusDao.update(entity);
+            return ServerResponse.ok().body(monoResponse, StatusEntity.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
         }
@@ -105,13 +104,13 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
     public Mono<ServerResponse> delete(ServerRequest request) {
         try {
             String id = request.pathVariable("id");
-            this.typeUserValidator.validatorIdRequestParam(id);
-            Mono<TypeUserEntity> searchForDelete = this.typeUserDao.findById(id);
-            TypeUserEntity searchForDeleteTO = searchForDelete.toProcessor().block();
+            this.statusValidator.validatorIdRequestParam(id);
+            Mono<StatusEntity> searchForDelete = this.statusDao.findById(id);
+            StatusEntity searchForDeleteTO = searchForDelete.toProcessor().block();
             if (searchForDeleteTO == null) {
                 return this.notFoundHandler("Objecto para la eliminacion no existe");
             }
-            Mono<Void> response = this.typeUserDao.deleteById(id);
+            Mono<Void> response = this.statusDao.deleteById(id);
             return ServerResponse.ok().body(response, Void.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
@@ -126,7 +125,7 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
      */
     public Mono<ServerResponse> deleteAll(ServerRequest request) {
         try {
-            Mono<Void> response = this.typeUserDao.deleteAll();
+            Mono<Void> response = this.statusDao.deleteAll();
             return ServerResponse.ok().body(response, Void.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
@@ -141,7 +140,7 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
      */
     public Mono<ServerResponse> findAll(ServerRequest request) {
         try {
-            return ServerResponse.ok().body(this.typeUserDao.findAll(), TypeUserEntity.class);
+            return ServerResponse.ok().body(this.statusDao.findAll(), StatusEntity.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
         }
@@ -156,8 +155,8 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
     public Mono<ServerResponse> findById(ServerRequest request) {
         try {
             String id = request.pathVariable("id");
-            this.typeUserValidator.validatorIdRequestParam(id);
-            return ServerResponse.ok().body(this.typeUserDao.findById(id), TypeUserEntity.class);
+            this.statusValidator.validatorIdRequestParam(id);
+            return ServerResponse.ok().body(this.statusDao.findById(id), StatusEntity.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
         }
@@ -172,8 +171,8 @@ public class TypeUserServiceImpl extends BaseServiceImpl<TypeUserEntity, String>
     public Mono<ServerResponse> findByName(ServerRequest request) {
         try {
             String name = request.pathVariable("name");
-            this.typeUserValidator.validatorIdRequestParam(name);
-            return ServerResponse.ok().body(this.typeUserDao.findByName(name), TypeUserEntity.class);
+            this.statusValidator.validatorIdRequestParam(name);
+            return ServerResponse.ok().body(this.statusDao.findByName(name), StatusEntity.class);
         } catch (Exception ex) {
             return this.errorHandler(ex);
         }

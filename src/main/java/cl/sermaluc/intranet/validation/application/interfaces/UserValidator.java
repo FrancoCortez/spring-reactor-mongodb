@@ -9,4 +9,18 @@ public interface UserValidator {
      * @throws Exception
      */
     public void validatorRequestObject(UserRequest to) throws Exception;
+
+    /**
+     * Validation request id for request
+     *
+     * @param id id to validation
+     * @throws Exception errors the validation export
+     */
+    public void validatorIdRequestParam(String id) throws Exception;
+
+    /**
+     * @param id
+     * @throws Exception
+     */
+    public void validatorExistForId(String id) throws Exception;
 }

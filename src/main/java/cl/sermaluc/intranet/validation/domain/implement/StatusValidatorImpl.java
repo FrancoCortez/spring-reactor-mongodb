@@ -1,70 +1,78 @@
-package cl.sermaluc.intranet.validation.application.implement;
+package cl.sermaluc.intranet.validation.domain.implement;
 
-import cl.sermaluc.intranet.dao.application.interfaces.UserDao;
-import cl.sermaluc.intranet.model.request.application.UserRequest;
-import cl.sermaluc.intranet.validation.application.interfaces.UserValidator;
+import cl.sermaluc.intranet.dao.domain.interfaces.StatusDao;
+import cl.sermaluc.intranet.model.request.domain.StatusRequest;
+import cl.sermaluc.intranet.model.request.domain.StatusWithIdRequest;
 import cl.sermaluc.intranet.validation.base.ValidationUtils;
+import cl.sermaluc.intranet.validation.domain.interfaces.StatusValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 /**
- *
+ * Base type user validation objects
  */
 @Component
-public class UserValidatorImpl implements UserValidator {
-
+public class StatusValidatorImpl implements StatusValidator {
     /**
      *
      */
-    private final UserDao userDao;
+    private final StatusDao statusDao;
 
     /**
-     * @param userDao
+     * @param statusDao
      */
-    public UserValidatorImpl(final UserDao userDao) {
-        this.userDao = userDao;
+    @Autowired
+    public StatusValidatorImpl(final StatusDao statusDao) {
+        this.statusDao = statusDao;
     }
 
     /**
-     * @param to
-     * @throws Exception
+     * Validation request object for request type user.
+     *
+     * @param to object to validation logic.
+     * @throws Exception errors the validation export
      */
-    public void validatorRequestObject(UserRequest to) throws Exception {
+    public void validatorRequestObject(StatusRequest to) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.objectNotNull
-                        .genericResult(to.getTypeUserWithIdRequest())
-                        .getFieldNameIfInvalid("El tipo de usuario no puede ser null")
-                        .orElse("")
-        );
-        errors.append(
                 ValidationUtils.notEmptyString
                         .and(ValidationUtils.notNullString)
-                        .genericResult(to.getUsername())
-                        .getFieldNameIfInvalid("El nombre de usuario no puede ser null o estar vacio")
-                        .orElse("")
-        );
-
-        errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
-                        .genericResult(to.getPassword())
-                        .getFieldNameIfInvalid("La contraceña no puede ser vacia o null")
-                        .orElse("")
-        );
-
-        errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
-                        .genericResult(to.getEmail())
-                        .getFieldNameIfInvalid("El correo no puede ser vacio o null")
+                        .genericResult(to.getName())
+                        .getFieldNameIfInvalid("Error el nombre del status no puede ser null o estar vacio")
                         .orElse("")
         );
         if (!errors.toString().isEmpty()) {
             throw new Exception(errors.toString());
         }
     }
+
+    /**
+     * @param to
+     * @throws Exception
+     */
+    public void validatorRequestWithIdObject(StatusWithIdRequest to) throws Exception {
+        StringBuilder errors = new StringBuilder();
+        errors.append(
+                ValidationUtils.notEmptyString
+                        .and(ValidationUtils.notNullString)
+                        .genericResult(to.getName())
+                        .getFieldNameIfInvalid("El nombre status no puede ser null o estar vacio")
+                        .orElse("")
+        );
+        errors.append(
+                ValidationUtils.notEmptyString
+                        .and(ValidationUtils.notNullString)
+                        .genericResult(to.get_id())
+                        .getFieldNameIfInvalid("El id no puede ser null o estar vacio")
+                        .orElse("")
+        );
+        if (!errors.toString().isEmpty()) {
+            throw new Exception(errors.toString());
+        }
+    }
+
 
     /**
      * Validation request id for request
@@ -93,12 +101,12 @@ public class UserValidatorImpl implements UserValidator {
     public void validatorExistForId(String id) throws Exception {
         StringBuilder errors = new StringBuilder();
         try {
-            Optional<Boolean> isExists = this.userDao.existsById(id).toProcessor().blockOptional();
+            Optional<Boolean> isExists = this.statusDao.existsById(id).toProcessor().blockOptional();
             if (!isExists.isPresent())
-                errors.append("El objeto usuario no existe en la base de datos.");
+                errors.append("El objeto status no existe en la base de datos.");
             else {
                 if (!isExists.get()) {
-                    errors.append("El objeto usuario no existe en la base de datos.");
+                    errors.append("El objeto status no existe en la base de datos.");
                 }
             }
         } catch (Exception ex) {
@@ -108,5 +116,6 @@ public class UserValidatorImpl implements UserValidator {
             throw new Exception(errors.toString());
         }
     }
+
 
 }
