@@ -1,6 +1,6 @@
-package cl.sermaluc.intranet.api.application;
+package cl.sermaluc.intranet.api.rest.application;
 
-import cl.sermaluc.intranet.api.base.BaseRouter;
+import cl.sermaluc.intranet.api.rest.base.BaseRouter;
 import cl.sermaluc.intranet.service.application.interfaces.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 /**

@@ -35,10 +35,11 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
      * @throws Exception errors the validation export
      */
     public void validatorRequestObject(TypeUserRequest to) throws Exception {
+
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getName())
                         .getFieldNameIfInvalid("Error el nombre del tipo de usuario no puede ser null o estar vacio")
                         .orElse("")
@@ -55,8 +56,8 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
     public void validatorRequestWithIdObject(TypeUserWithIdRequest to) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getName())
                         .getFieldNameIfInvalid("El nombre del tipo de usuario no puede ser null o estar vacio")
                         .orElse("")
@@ -83,8 +84,8 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
     public void validatorIdRequestParam(String id) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(id)
                         .getFieldNameIfInvalid("El id no puede ser null o estar vacio")
                         .orElse("")

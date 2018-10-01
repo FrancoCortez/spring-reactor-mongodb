@@ -1,4 +1,4 @@
-package cl.sermaluc.intranet.api.base;
+package cl.sermaluc.intranet.api.rest.base;
 
 import org.springframework.beans.factory.annotation.Value;
 

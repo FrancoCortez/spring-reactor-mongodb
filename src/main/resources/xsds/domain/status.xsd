@@ -1,0 +1,88 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.sermaluc.cl/intranet/model/soap/domain/status"
+           targetNamespace="http://www.sermaluc.cl/intranet/model/soap/domain/status" elementFormDefault="qualified">
+
+    <xs:element name="getStatusForIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getStatusForIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusInfo" type="tns:statusInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="statusInfo">
+        <xs:sequence>
+            <xs:element name="statusId" type="xs:string"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="getAllStatusRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="getAllStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusInfo" type="tns:statusInfo" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="serviceStatus">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="addStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="description" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xs:element name="statusInfo" type="tns:statusInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusId" type="xs:string"/>
+                <xs:element name="statusInfo" type="tns:statusInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xs:element name="statusInfo" type="tns:statusInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteStatusRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusId" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteStatusResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

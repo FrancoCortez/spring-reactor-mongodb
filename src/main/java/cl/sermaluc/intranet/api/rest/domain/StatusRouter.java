@@ -1,7 +1,7 @@
-package cl.sermaluc.intranet.api.domain;
+package cl.sermaluc.intranet.api.rest.domain;
 
 
-import cl.sermaluc.intranet.api.base.BaseRouter;
+import cl.sermaluc.intranet.api.rest.base.BaseRouter;
 import cl.sermaluc.intranet.service.domain.interfaces.StatusService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
