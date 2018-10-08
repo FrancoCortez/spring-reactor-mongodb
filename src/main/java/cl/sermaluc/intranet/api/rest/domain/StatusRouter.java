@@ -13,7 +13,7 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 /**
- * Base type user micro services routes
+ * Base status micro services routes
  */
 @Configuration
 public class StatusRouter extends BaseRouter {

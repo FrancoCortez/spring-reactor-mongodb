@@ -1,6 +1,7 @@
 package cl.sermaluc.intranet.model.entity.application;
 
 import cl.sermaluc.intranet.model.entity.base.BaseEntity;
+import cl.sermaluc.intranet.model.entity.domain.StatusEntity;
 import cl.sermaluc.intranet.model.entity.domain.TypeUserEntity;
 import lombok.*;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -26,4 +27,5 @@ public class UserEntity extends BaseEntity {
     @NotNull
     private String email;
     private TypeUserEntity typeUser;
+    private StatusEntity statusEntity;
 }

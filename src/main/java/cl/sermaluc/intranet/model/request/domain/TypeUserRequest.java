@@ -11,7 +11,6 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class TypeUserRequest implements Serializable {
-
     private String name;
     private String description;
 

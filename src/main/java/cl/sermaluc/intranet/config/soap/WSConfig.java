@@ -22,7 +22,13 @@ public class WSConfig extends WsConfigurerAdapter {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
+
         return new ServletRegistrationBean(servlet, "/soapws/*");
+    }
+
+    @Bean(name = "type-user-schema")
+    public XsdSchema typeUserSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("xsds/domain/type-user.xsd"));
     }
 
     @Bean(name = "type-user")
@@ -35,9 +41,9 @@ public class WSConfig extends WsConfigurerAdapter {
         return wsdl11Definition;
     }
 
-    @Bean(name = "type-user-schema")
-    public XsdSchema typeUserSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("xsds/domain/type-user.xsd"));
+    @Bean(name = "status-schema")
+    public XsdSchema statusSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("xsds/domain/status.xsd"));
     }
 
     @Bean(name = "status")
@@ -48,10 +54,5 @@ public class WSConfig extends WsConfigurerAdapter {
         wsdl11Definition.setTargetNamespace("http://www.sermaluc.cl/soap/resources/status");
         wsdl11Definition.setSchema(statusSchema);
         return wsdl11Definition;
-    }
-
-    @Bean(name = "status-schema")
-    public XsdSchema statusSchema() {
-        return new SimpleXsdSchema(new ClassPathResource("xsds/domain/status.xsd"));
     }
 }

@@ -37,8 +37,8 @@ public class StatusValidatorImpl implements StatusValidator {
     public void validatorRequestObject(StatusRequest to) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getName())
                         .getFieldNameIfInvalid("Error el nombre del status no puede ser null o estar vacio")
                         .orElse("")
@@ -55,15 +55,15 @@ public class StatusValidatorImpl implements StatusValidator {
     public void validatorRequestWithIdObject(StatusWithIdRequest to) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getName())
                         .getFieldNameIfInvalid("El nombre status no puede ser null o estar vacio")
                         .orElse("")
         );
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.get_id())
                         .getFieldNameIfInvalid("El id no puede ser null o estar vacio")
                         .orElse("")

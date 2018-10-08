@@ -2,11 +2,13 @@ package cl.sermaluc.intranet.service.application.implement;
 
 import cl.sermaluc.intranet.dao.application.interfaces.UserDao;
 import cl.sermaluc.intranet.model.entity.application.UserEntity;
+import cl.sermaluc.intranet.model.entity.domain.StatusEntity;
 import cl.sermaluc.intranet.model.entity.domain.TypeUserEntity;
 import cl.sermaluc.intranet.model.request.application.UserRequest;
 import cl.sermaluc.intranet.service.application.interfaces.UserService;
 import cl.sermaluc.intranet.service.base.implement.BaseServiceImpl;
 import cl.sermaluc.intranet.validation.application.interfaces.UserValidator;
+import cl.sermaluc.intranet.validation.domain.interfaces.StatusValidator;
 import cl.sermaluc.intranet.validation.domain.interfaces.TypeUserValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -23,17 +25,20 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity, String> impleme
      */
     private final UserDao userDao;
     private final TypeUserValidator typeUserValidator;
+    private final StatusValidator statusValidator;
     private final UserValidator userValidator;
 
     /**
      * @param userDao
      * @param typeUserValidator
+     * @param statusValidator
      * @param userValidator
      */
-    public UserServiceImpl(final UserDao userDao, final TypeUserValidator typeUserValidator, final UserValidator userValidator) {
+    public UserServiceImpl(final UserDao userDao, final TypeUserValidator typeUserValidator, StatusValidator statusValidator, final UserValidator userValidator) {
         super(userDao);
         this.userDao = userDao;
         this.typeUserValidator = typeUserValidator;
+        this.statusValidator = statusValidator;
         this.userValidator = userValidator;
     }
 
@@ -52,17 +57,30 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity, String> impleme
             this.typeUserValidator.validatorRequestWithIdObject(requestTO.getTypeUserWithIdRequest());
             this.typeUserValidator.validatorExistForId(requestTO.getTypeUserWithIdRequest().get_id());
 
+            this.statusValidator.validatorRequestWithIdObject(requestTO.getStatusWithIdRequest());
+            this.statusValidator.validatorExistForId(requestTO.getStatusWithIdRequest().get_id());
+
+            //Create type user.
             TypeUserEntity typeUserEntity = TypeUserEntity.builder()
                     .name(requestTO.getTypeUserWithIdRequest().getName())
                     .description(requestTO.getTypeUserWithIdRequest().getDescription())
                     .build();
             typeUserEntity.set_id(requestTO.getTypeUserWithIdRequest().get_id());
 
+            //Create status.
+            StatusEntity statusEntity = StatusEntity.builder()
+                    .name(requestTO.getStatusWithIdRequest().getName())
+                    .description(requestTO.getStatusWithIdRequest().getDescription())
+                    .build();
+            statusEntity.set_id(requestTO.getStatusWithIdRequest().get_id());
+
+            //Create User
             UserEntity userEntity = UserEntity.builder()
                     .username(requestTO.getUsername())
                     .password(requestTO.getPassword())
                     .email(requestTO.getEmail())
                     .typeUser(typeUserEntity)
+                    .statusEntity(statusEntity)
                     .build();
             Mono<UserEntity> monoResponse = this.userDao.insert(userEntity);
             return ServerResponse.ok().body(monoResponse, UserEntity.class);
