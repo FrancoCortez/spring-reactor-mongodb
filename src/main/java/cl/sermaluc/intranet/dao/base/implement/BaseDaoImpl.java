@@ -1,6 +1,7 @@
 package cl.sermaluc.intranet.dao.base.implement;
 
 import cl.sermaluc.intranet.dao.base.interfaces.BaseDao;
+import cl.sermaluc.intranet.model.entity.base.AuditingEntity;
 import cl.sermaluc.intranet.model.entity.base.BaseEntity;
 import cl.sermaluc.intranet.utils.logger.LoggerSermaluc;
 import org.reactivestreams.Publisher;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Date;
 
 /**
  * Base Dao implement repository, the generic class for entity parameters
@@ -44,6 +47,7 @@ public class BaseDaoImpl<T extends BaseEntity, ID extends String> implements Bas
      * @throws Exception possibility exception
      */
     public Mono<T> insert(T entity) throws Exception {
+        entity.setAuditingEntity(this.insertAuditing());
         logger.infoBegin("insert", "Data: " + entity.toString());
         logger.infoExecute("insert", "Execute insert reactive mongo repository");
         Mono<T> result = this.tidReactiveMongoRepository.insert(entity);
@@ -59,6 +63,7 @@ public class BaseDaoImpl<T extends BaseEntity, ID extends String> implements Bas
      * @throws Exception possibility exception
      */
     public Flux<T> insert(Publisher<T> entities) throws Exception {
+        T entitu = entities.subscribe((entiti) -> entiti.set).setAuditingEntity(this.insertAuditing());
         logger.infoBegin("insert", "Data: " + entities.toString());
         logger.infoExecute("insert", "Execute insert reactive mongo repository");
         return this.tidReactiveMongoRepository.insert(entities);
@@ -266,5 +271,29 @@ public class BaseDaoImpl<T extends BaseEntity, ID extends String> implements Bas
      */
     public Mono<Boolean> existsById(ID id) throws Exception {
         return this.tidReactiveMongoRepository.existsById(id);
+    }
+
+    /**
+     * @return
+     */
+    private AuditingEntity insertAuditing() {
+        return AuditingEntity.builder()
+                .createdBy("LEGACY")
+                .createdDate(new Date())
+                .delete(true)
+                .lastModfiedDate(new Date())
+                .lastModifiedBy("LEGACY")
+                .build();
+    }
+
+    /**
+     * @return
+     */
+    private AuditingEntity updateAuditing() {
+        return AuditingEntity.builder()
+                .delete(true)
+                .lastModfiedDate(new Date())
+                .lastModifiedBy("LEGACY")
+                .build();
     }
 }
