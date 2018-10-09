@@ -63,8 +63,8 @@ public class TypeUserValidatorImpl implements TypeUserValidator {
                         .orElse("")
         );
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.get_id())
                         .getFieldNameIfInvalid("El id no puede ser null o estar vacio")
                         .orElse("")

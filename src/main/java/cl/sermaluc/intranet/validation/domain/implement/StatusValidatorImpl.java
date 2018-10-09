@@ -83,8 +83,8 @@ public class StatusValidatorImpl implements StatusValidator {
     public void validatorIdRequestParam(String id) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(id)
                         .getFieldNameIfInvalid("El id no puede ser null o estar vacio")
                         .orElse("")

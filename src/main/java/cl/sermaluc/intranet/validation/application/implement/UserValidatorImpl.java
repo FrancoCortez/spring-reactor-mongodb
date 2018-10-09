@@ -39,24 +39,24 @@ public class UserValidatorImpl implements UserValidator {
                         .orElse("")
         );
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getUsername())
                         .getFieldNameIfInvalid("El nombre de usuario no puede ser null o estar vacio")
                         .orElse("")
         );
 
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getPassword())
                         .getFieldNameIfInvalid("La contraceña no puede ser vacia o null")
                         .orElse("")
         );
 
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(to.getEmail())
                         .getFieldNameIfInvalid("El correo no puede ser vacio o null")
                         .orElse("")
@@ -75,8 +75,8 @@ public class UserValidatorImpl implements UserValidator {
     public void validatorIdRequestParam(String id) throws Exception {
         StringBuilder errors = new StringBuilder();
         errors.append(
-                ValidationUtils.notEmptyString
-                        .and(ValidationUtils.notNullString)
+                ValidationUtils.notNullString
+                        .and(ValidationUtils.notEmptyString)
                         .genericResult(id)
                         .getFieldNameIfInvalid("El id no puede ser null o estar vacio")
                         .orElse("")
