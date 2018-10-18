@@ -24,8 +24,17 @@ public class UserServiceImpl extends BaseServiceImpl<UserEntity, String> impleme
      *
      */
     private final UserDao userDao;
+    /**
+     *
+     */
     private final TypeUserValidator typeUserValidator;
+    /**
+     *
+     */
     private final StatusValidator statusValidator;
+    /**
+     *
+     */
     private final UserValidator userValidator;
 
     /**
