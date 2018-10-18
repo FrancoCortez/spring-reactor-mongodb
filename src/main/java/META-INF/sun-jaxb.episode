@@ -13,40 +13,40 @@ Generado el: 2018.10.08 a las 02:15:10 PM CLST
       <package name="cl.sermaluc.intranet.model.soap.domain.status"/>
     </schemaBindings>
     <bindings scd="tns:getStatusForIdRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.GetStatusForIdRequest"/>
+      <class ref="GetStatusForIdRequest"/>
     </bindings>
     <bindings scd="tns:getStatusForIdResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.GetStatusForIdResponse"/>
+      <class ref="GetStatusForIdResponse"/>
     </bindings>
     <bindings scd="~tns:statusInfo">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.StatusInfo"/>
+      <class ref="StatusInfo"/>
     </bindings>
     <bindings scd="tns:getAllStatusRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.GetAllStatusRequest"/>
+      <class ref="GetAllStatusRequest"/>
     </bindings>
     <bindings scd="tns:getAllStatusResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.GetAllStatusResponse"/>
+      <class ref="GetAllStatusResponse"/>
     </bindings>
     <bindings scd="tns:addStatusRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.AddStatusRequest"/>
+      <class ref="AddStatusRequest"/>
     </bindings>
     <bindings scd="tns:addStatusResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.AddStatusResponse"/>
+      <class ref="AddStatusResponse"/>
     </bindings>
     <bindings scd="~tns:serviceStatus">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.ServiceStatus"/>
+      <class ref="ServiceStatus"/>
     </bindings>
     <bindings scd="tns:updateStatusRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.UpdateStatusRequest"/>
+      <class ref="UpdateStatusRequest"/>
     </bindings>
     <bindings scd="tns:updateStatusResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.UpdateStatusResponse"/>
+      <class ref="UpdateStatusResponse"/>
     </bindings>
     <bindings scd="tns:deleteStatusRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.DeleteStatusRequest"/>
+      <class ref="DeleteStatusRequest"/>
     </bindings>
     <bindings scd="tns:deleteStatusResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.status.DeleteStatusResponse"/>
+      <class ref="DeleteStatusResponse"/>
     </bindings>
   </bindings>
   <bindings scd="x-schema::tns" xmlns:tns="http://www.sermaluc.cl/intranet/model/soap/domain/type-user">
@@ -54,40 +54,40 @@ Generado el: 2018.10.08 a las 02:15:10 PM CLST
       <package name="cl.sermaluc.intranet.model.soap.domain.type_user"/>
     </schemaBindings>
     <bindings scd="tns:getTypeUserForIdRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.GetTypeUserForIdRequest"/>
+      <class ref="GetTypeUserForIdRequest"/>
     </bindings>
     <bindings scd="tns:getTypeUserForIdResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.GetTypeUserForIdResponse"/>
+      <class ref="GetTypeUserForIdResponse"/>
     </bindings>
     <bindings scd="~tns:typeUserInfo">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.TypeUserInfo"/>
+      <class ref="TypeUserInfo"/>
     </bindings>
     <bindings scd="tns:getAllTypeUserRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.GetAllTypeUserRequest"/>
+      <class ref="GetAllTypeUserRequest"/>
     </bindings>
     <bindings scd="tns:getAllTypeUserResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.GetAllTypeUserResponse"/>
+      <class ref="GetAllTypeUserResponse"/>
     </bindings>
     <bindings scd="tns:addTypeUserRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.AddTypeUserRequest"/>
+      <class ref="AddTypeUserRequest"/>
     </bindings>
     <bindings scd="tns:addTypeUserResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.AddTypeUserResponse"/>
+      <class ref="AddTypeUserResponse"/>
     </bindings>
     <bindings scd="~tns:serviceStatus">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.ServiceStatus"/>
+      <class ref="ServiceStatus"/>
     </bindings>
     <bindings scd="tns:updateTypeUserRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.UpdateTypeUserRequest"/>
+      <class ref="UpdateTypeUserRequest"/>
     </bindings>
     <bindings scd="tns:updateTypeUserResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.UpdateTypeUserResponse"/>
+      <class ref="UpdateTypeUserResponse"/>
     </bindings>
     <bindings scd="tns:deleteTypeUserRequest">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.DeleteTypeUserRequest"/>
+      <class ref="DeleteTypeUserRequest"/>
     </bindings>
     <bindings scd="tns:deleteTypeUserResponse">
-      <class ref="cl.sermaluc.intranet.model.soap.domain.type_user.DeleteTypeUserResponse"/>
+      <class ref="DeleteTypeUserResponse"/>
     </bindings>
   </bindings>
 </bindings>

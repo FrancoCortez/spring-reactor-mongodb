@@ -1,1 +1,0 @@
-package cl.sermaluc.intranet.service.domain;
